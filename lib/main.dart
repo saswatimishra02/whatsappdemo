@@ -26,17 +26,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    home: DefaultTabController(
+    return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: new AppBar(
@@ -58,32 +50,37 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
           bottom: TabBar(
+            indicatorColor: Colors.white,
             tabs: <Widget>[
               Tab(
-                icon: Icon(Icons.camera),
+                icon: Icon(Icons.camera_alt),
+              ),
+              Tab(text: "CHATS"),
+              Tab(
+                text: "STATUS",
+              ),
+              Tab(
+                text: "CALLS",
               ),
             ],
           ),
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Color.fromRGBO(7, 94, 84, 1),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
+        body: TabBarView(
+          children: [
+            Icon(Icons.directions_car),
+            ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://justice.org.au/wp-content/uploads/2017/08/avatar-icon.png'),
+                ),
+                title: Text('saswati'),
+                subtitle: Text("message"),
+                trailing: Text("10.14 pm "),
               ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.display1,
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: Icon(Icons.message),
+            Icon(Icons.directions_bike),
+            Icon(Icons.directions_bike),
+          ],
         ),
       ),
     );
